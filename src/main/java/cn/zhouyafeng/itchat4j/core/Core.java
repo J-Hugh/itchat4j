@@ -49,6 +49,7 @@ public class Core {
 	private JSONObject userSelf; // 登陆账号自身信息
 	private List<JSONObject> memberList = new ArrayList<JSONObject>(); // 好友+群聊+公众号+特殊账号
 	private List<JSONObject> contactList = new ArrayList<JSONObject>();// 好友
+	private Map<String,String> contactMap = new HashMap<>();
 	private List<JSONObject> groupList = new ArrayList<JSONObject>();; // 群
 	private Map<String, JSONArray> groupMemeberMap = new HashMap<String, JSONArray>(); // 群聊成员字典
 	private List<JSONObject> publicUsersList = new ArrayList<JSONObject>();;// 公众号／服务号
@@ -87,6 +88,18 @@ public class Core {
 				put("BaseRequest", map);
 			}
 		};
+	}
+
+	public String getNikeName(String userName){
+		return contactMap.get(userName);
+	}
+
+	public Map<String, String> getContactMap() {
+		return contactMap;
+	}
+
+	public void setContactMap(Map<String, String> contactMap) {
+		this.contactMap = contactMap;
 	}
 
 	public boolean isAlive() {

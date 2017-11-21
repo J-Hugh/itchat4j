@@ -106,7 +106,7 @@ public class MsgCenter {
 			} else {
 				LOG.info("Useless msg");
 			}
-			LOG.info("收到消息一条，来自: " + m.getString("FromUserName"));
+			LOG.info("收到消息一条，来自: " + core.getNikeName(m.getString("FromUserName")) + ",内容 :" + m.getString("Content"));
 			result.add(m);
 		}
 		return result;
@@ -146,8 +146,7 @@ public class MsgCenter {
 								msgHandler.sysMsgHandle(msg);
 							} else if (msg.getType().equals(MsgTypeEnum.VERIFYMSG.getType())) { // 确认添加好友消息
 								String result = msgHandler.verifyAddFriendMsgHandle(msg);
-								MessageTools.sendMsgById(result,
-										core.getMsgList().get(0).getRecommendInfo().getUserName());
+								MessageTools.sendMsgById(result, core.getMsgList().get(0).getRecommendInfo().getUserName());
 							} else if (msg.getType().equals(MsgTypeEnum.MEDIA.getType())) { // 多媒体消息
 								String result = msgHandler.mediaMsgHandle(msg);
 								MessageTools.sendMsgById(result, core.getMsgList().get(0).getFromUserName());

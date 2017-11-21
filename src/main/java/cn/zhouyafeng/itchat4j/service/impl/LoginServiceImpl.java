@@ -389,8 +389,10 @@ public class LoginServiceImpl implements ILoginService {
 					core.getContactList().remove(o);
 				} else { // 普通联系人
 					core.getContactList().add(o);
+					core.getContactMap().put(o.getString("RemarkName").trim(),o.getString("UserName"));
 				}
 			}
+			System.out.println(JSON.toJSONString(member));
 			return;
 		} catch (Exception e) {
 			LOG.error(e.getMessage(), e);
@@ -631,7 +633,7 @@ public class LoginServiceImpl implements ILoginService {
 	 * @author https://github.com/yaphone
 	 * @date 2017年4月16日 上午11:11:34
 	 * @return
-	 * 
+	 *
 	 */
 	private Map<String, String> syncCheck() {
 		Map<String, String> resultMap = new HashMap<String, String>();

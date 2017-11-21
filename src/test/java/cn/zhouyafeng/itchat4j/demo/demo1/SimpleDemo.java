@@ -35,6 +35,7 @@ public class SimpleDemo implements IMsgHandlerFace {
 			// MessageTools.sendPicMsgByUserId(userId, docFilePath);
 			String text = msg.getText(); // 发送文本消息，也可调用MessageTools.sendFileMsgByUserId(userId,text);
 			LOG.info(text);
+
 			if (text.equals("111")) {
 				WechatTools.logout();
 			}
@@ -46,7 +47,7 @@ public class SimpleDemo implements IMsgHandlerFace {
 				System.out.print(WechatTools.getGroupIdList());
 				System.out.print(Core.getInstance().getGroupMemeberMap());
 			}
-			return text;
+			return null;
 		}
 		return null;
 	}
@@ -64,7 +65,7 @@ public class SimpleDemo implements IMsgHandlerFace {
 		String fileName = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss").format(new Date());
 		String voicePath = "D://itchat4j/voice" + File.separator + fileName + ".mp3";
 		DownloadTools.getDownloadFn(msg, MsgTypeEnum.VOICE.getType(), voicePath);
-		return "声音保存成功";
+		return null;
 	}
 
 	@Override
@@ -72,7 +73,7 @@ public class SimpleDemo implements IMsgHandlerFace {
 		String fileName = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss").format(new Date());
 		String viedoPath = "D://itchat4j/viedo" + File.separator + fileName + ".mp4";
 		DownloadTools.getDownloadFn(msg, MsgTypeEnum.VIEDO.getType(), viedoPath);
-		return "视频保存成功";
+		return null;
 	}
 
 	@Override
@@ -94,7 +95,7 @@ public class SimpleDemo implements IMsgHandlerFace {
 		String province = recommendInfo.getProvince();
 		String city = recommendInfo.getCity();
 		String text = "你好，来自" + province + city + "的" + nickName + "， 欢迎添加我为好友！";
-		return text;
+		return null;
 	}
 
 	@Override
@@ -102,7 +103,7 @@ public class SimpleDemo implements IMsgHandlerFace {
 		String fileName = msg.getFileName();
 		String filePath = "D://itchat4j/file" + File.separator + fileName; // 这里是需要保存收到的文件路径，文件可以是任何格式如PDF，WORD，EXCEL等。
 		DownloadTools.getDownloadFn(msg, MsgTypeEnum.MEDIA.getType(), filePath);
-		return "文件" + fileName + "保存成功";
+		return null;
 	}
 
 }
